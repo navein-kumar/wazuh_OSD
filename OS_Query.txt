@@ -1,0 +1,50 @@
+kibana query,
+
+GET wazuh-*/_search
+{
+    "size": 0,
+    "query": {
+        "match_all": {}
+    },
+  "aggs": {
+    "sample": {
+      "terms": {
+        "field": "data.message.data.exe.file",
+        "order": {
+          "_count": "desc"
+        },
+        "size": 5
+      }
+    }
+  }
+}
+
+---
+
+Transform Muliterm Quey
+
+{
+  "wazuh_query": {
+    "index": "wazuh-*",
+  "size": 5,
+    "query": {
+        "match_all": {}
+        
+    },
+    "aggs": {
+    "sample": {
+      "terms": {
+        "field": "data.message.data.exe.file",
+        "order": {
+          "_count": "desc"
+        },
+        "size": 5
+      }
+    }
+  }
+    
+ 
+  }
+}
+
+---
